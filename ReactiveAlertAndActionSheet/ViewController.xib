@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="11762" systemVersion="16A323" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
+    <device id="retina4_7" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="11757"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="AvatarViewController" customModule="ReactiveAlertAndActionSheet" customModuleProvider="target">
+            <connections>
+                <outlet property="chooseImageButton" destination="Mqb-Q7-paN" id="chf-ic-NcZ"/>
+                <outlet property="imageView" destination="jJS-Th-1aD" id="YHK-99-DPU"/>
+                <outlet property="view" destination="iN0-l3-epB" id="moJ-Xp-CuQ"/>
+            </connections>
+        </placeholder>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <view contentMode="scaleToFill" id="iN0-l3-epB">
+            <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+            <subviews>
+                <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="jJS-Th-1aD">
+                    <rect key="frame" x="87.5" y="193.5" width="200" height="200"/>
+                    <color key="backgroundColor" red="0.93122661110000005" green="0.93119871620000005" blue="0.9312145114" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="200" id="Efw-K0-bAC"/>
+                        <constraint firstAttribute="width" constant="200" id="Kd7-Q4-hNL"/>
+                    </constraints>
+                    <userDefinedRuntimeAttributes>
+                        <userDefinedRuntimeAttribute type="boolean" keyPath="layer.masksToBounds" value="YES"/>
+                    </userDefinedRuntimeAttributes>
+                </imageView>
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Mqb-Q7-paN">
+                    <rect key="frame" x="124.5" y="593" width="125" height="30"/>
+                    <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    <state key="normal" title="Choose the image"/>
+                </button>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="The avatar!" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="GAe-h0-ees">
+                    <rect key="frame" x="144" y="398.5" width="86" height="21"/>
+                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                    <nil key="textColor"/>
+                    <nil key="highlightedColor"/>
+                </label>
+            </subviews>
+            <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+            <constraints>
+                <constraint firstAttribute="bottom" secondItem="Mqb-Q7-paN" secondAttribute="bottom" constant="44" id="7fc-Yk-cJp"/>
+                <constraint firstItem="GAe-h0-ees" firstAttribute="top" secondItem="jJS-Th-1aD" secondAttribute="bottom" constant="5" id="Q9M-Yw-MQA"/>
+                <constraint firstItem="GAe-h0-ees" firstAttribute="centerX" secondItem="jJS-Th-1aD" secondAttribute="centerX" id="S1h-7U-1gC"/>
+                <constraint firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="Mqb-Q7-paN" secondAttribute="trailing" constant="20" id="UxC-w0-id2"/>
+                <constraint firstItem="jJS-Th-1aD" firstAttribute="centerY" secondItem="iN0-l3-epB" secondAttribute="centerY" constant="-40" id="ZkO-5c-clQ"/>
+                <constraint firstItem="Mqb-Q7-paN" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="iN0-l3-epB" secondAttribute="leading" constant="20" id="l1z-Kz-veL"/>
+                <constraint firstItem="Mqb-Q7-paN" firstAttribute="centerX" secondItem="jJS-Th-1aD" secondAttribute="centerX" id="llO-6e-AUN"/>
+                <constraint firstItem="jJS-Th-1aD" firstAttribute="centerX" secondItem="iN0-l3-epB" secondAttribute="centerX" id="pVU-g9-bhi"/>
+            </constraints>
+        </view>
+    </objects>
+</document>

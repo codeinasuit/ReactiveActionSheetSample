@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Scheme
+   version = "1.3">
+   <BuildAction>
+      <BuildActionEntries>
+         <BuildActionEntry
+            buildForRunning = "YES"
+            buildForTesting = "YES">
+            <BuildableReference
+               BuildableIdentifier = "primary"
+               BlueprintIdentifier = "66AECA301E35D9C000270C32"
+               BuildableName = "ReactiveAlertAndActionSheetTests.xctest"
+               BlueprintName = "ReactiveAlertAndActionSheetTests"
+               ReferencedContainer = "container:ReactiveAlertAndActionSheet.xcodeproj">
+            </BuildableReference>
+         </BuildActionEntry>
+      </BuildActionEntries>
+   </BuildAction>
+   <TestAction
+      buildConfiguration = "Debug">
+      <Testables>
+         <TestableReference>
+            <BuildableReference
+               BuildableIdentifier = "primary"
+               BlueprintIdentifier = "66AECA301E35D9C000270C32"
+               BuildableName = "ReactiveAlertAndActionSheetTests.xctest"
+               BlueprintName = "ReactiveAlertAndActionSheetTests"
+               ReferencedContainer = "container:ReactiveAlertAndActionSheet.xcodeproj">
+            </BuildableReference>
+            <SkippedTests>
+               <Test
+                  Identifier = "ImageReceiverTests">
+               </Test>
+               <Test
+                  Identifier = "ViewModelTests">
+               </Test>
+            </SkippedTests>
+         </TestableReference>
+      </Testables>
+   </TestAction>
+   <LaunchAction
+      useCustomWorkingDirectory = "NO">
+   </LaunchAction>
+</Scheme>

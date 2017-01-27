@@ -1,0 +1,132 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>SchemeUserState</key>
+	<dict>
+		<key>Action.xcscheme</key>
+		<dict>
+			<key>isShown</key>
+			<false />
+			<key>orderHint</key>
+			<integer>4</integer>
+		</dict>
+		<key>MockUIAlertController.xcscheme</key>
+		<dict>
+			<key>isShown</key>
+			<false />
+			<key>orderHint</key>
+			<integer>5</integer>
+		</dict>
+		<key>NSObject+Rx.xcscheme</key>
+		<dict>
+			<key>isShown</key>
+			<false />
+			<key>orderHint</key>
+			<integer>6</integer>
+		</dict>
+		<key>Pods-ReactiveAlertAndActionSheet.xcscheme</key>
+		<dict>
+			<key>isShown</key>
+			<false />
+			<key>orderHint</key>
+			<integer>7</integer>
+		</dict>
+		<key>Pods-ReactiveAlertAndActionSheetTests.xcscheme</key>
+		<dict>
+			<key>isShown</key>
+			<false />
+			<key>orderHint</key>
+			<integer>8</integer>
+		</dict>
+		<key>RxBlocking.xcscheme</key>
+		<dict>
+			<key>isShown</key>
+			<false />
+			<key>orderHint</key>
+			<integer>9</integer>
+		</dict>
+		<key>RxCocoa.xcscheme</key>
+		<dict>
+			<key>isShown</key>
+			<false />
+			<key>orderHint</key>
+			<integer>10</integer>
+		</dict>
+		<key>RxSwift.xcscheme</key>
+		<dict>
+			<key>isShown</key>
+			<false />
+			<key>orderHint</key>
+			<integer>11</integer>
+		</dict>
+		<key>RxSwiftExt.xcscheme</key>
+		<dict>
+			<key>isShown</key>
+			<false />
+			<key>orderHint</key>
+			<integer>12</integer>
+		</dict>
+		<key>RxTest.xcscheme</key>
+		<dict>
+			<key>isShown</key>
+			<false />
+			<key>orderHint</key>
+			<integer>13</integer>
+		</dict>
+	</dict>
+	<key>SuppressBuildableAutocreation</key>
+	<dict>
+		<key>2CAEADA706698A8380DDBB6C7FCCF0A7</key>
+		<dict>
+			<key>primary</key>
+			<true />
+		</dict>
+		<key>3326A7994698237363E414781C521198</key>
+		<dict>
+			<key>primary</key>
+			<true />
+		</dict>
+		<key>34F2E36805AB7E9EAC1D7E60BB282270</key>
+		<dict>
+			<key>primary</key>
+			<true />
+		</dict>
+		<key>4D16CBE160C84F3966B4D57779A10AFD</key>
+		<dict>
+			<key>primary</key>
+			<true />
+		</dict>
+		<key>4F3B0C019AF9BECC0CACBEAC8744E831</key>
+		<dict>
+			<key>primary</key>
+			<true />
+		</dict>
+		<key>6C690AE8B6CE829AD5ED00F84D101B74</key>
+		<dict>
+			<key>primary</key>
+			<true />
+		</dict>
+		<key>A2E1A9733B2E719A117C025035ABD805</key>
+		<dict>
+			<key>primary</key>
+			<true />
+		</dict>
+		<key>A6BA4EE7ABDE69EBAEA24C69DB1794C2</key>
+		<dict>
+			<key>primary</key>
+			<true />
+		</dict>
+		<key>BD4F9A69F0D59047E77BBBAD352062E9</key>
+		<dict>
+			<key>primary</key>
+			<true />
+		</dict>
+		<key>C7EC37247077041FDAD1F4FEB9536DFB</key>
+		<dict>
+			<key>primary</key>
+			<true />
+		</dict>
+	</dict>
+</dict>
+</plist>

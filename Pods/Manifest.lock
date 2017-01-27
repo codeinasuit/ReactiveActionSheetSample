@@ -1,0 +1,40 @@
+PODS:
+  - Action (2.2.1):
+    - RxCocoa (~> 3.0)
+    - RxSwift (~> 3.0)
+  - MockUIAlertController (1.1.1)
+  - NSObject+Rx (2.0.0):
+    - RxSwift
+  - RxBlocking (3.1.0):
+    - RxSwift (~> 3.1)
+  - RxCocoa (3.1.0):
+    - RxSwift (~> 3.1)
+  - RxSwift (3.1.0)
+  - RxSwiftExt (2.1.0):
+    - RxSwift (~> 3.0)
+  - RxTest (3.1.0):
+    - RxSwift (~> 3.0)
+
+DEPENDENCIES:
+  - Action
+  - MockUIAlertController
+  - NSObject+Rx
+  - RxBlocking
+  - RxCocoa
+  - RxSwift
+  - RxSwiftExt
+  - RxTest
+
+SPEC CHECKSUMS:
+  Action: 93c6c9eec95eb76428b2d49a6d260466c2f71b7e
+  MockUIAlertController: 51fbb77c43c7b8e6cb339e307b031836740ebe57
+  NSObject+Rx: 2a9cd801d9c847e6d2486cbad8d7701b67834e70
+  RxBlocking: cd73ef6a5f8c39cede9488178c46aa0c3c3ed17f
+  RxCocoa: 50d7564866da9299161e86a263ce12a0873904d8
+  RxSwift: 83ff553e7593fdfdcb2562933a64c0284dffdadc
+  RxSwiftExt: 492a6575cf6afabb8feeed3204bd0f9e2c695e67
+  RxTest: 661e33b5022682961784da03cf79c175fcc4bd64
+
+PODFILE CHECKSUM: 537095a3dea2f0f5413c0a39a3189e0e8f6646cf
+
+COCOAPODS: 1.1.1

@@ -1,0 +1,6 @@
+framework module MockUIAlertController {
+  umbrella header "MockUIAlertController-umbrella.h"
+
+  export *
+  module * { export * }
+}

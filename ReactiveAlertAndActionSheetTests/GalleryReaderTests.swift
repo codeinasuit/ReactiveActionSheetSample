@@ -6,6 +6,7 @@
 import XCTest
 import RxSwift
 import Photos
+import RxBlocking
 import RxTest
 @testable import ReactiveAlertAndActionSheet
 
@@ -36,6 +37,15 @@ final class GalleryReaderTests: XCTestCase {
             .disposed(by: disposeBag)
 
         XCTAssertEqual(observer.events, [next(0, expectedImage), completed(0)])
+    }
+    
+    func test_asksManagerForLastPhotoTaken_version2() {
+        let expectedImage = UIImage()
+        photosManagerMock.expectedImage = expectedImage
+        
+        let image = try! subject.lastPhotoTaken.toBlocking().first()!
+
+        XCTAssertEqual(image, expectedImage)
     }
 
     func test_returnsError_ifPhotosManagerDidntFindAnyImage() {

@@ -9,52 +9,55 @@ import RxCocoa
 import RxSwiftExt
 import Action
 
-protocol ImageHaving {
-    var image: Observable<UIImage> { get }
-}
-
 protocol AvatarViewModeling {
+    //Input
+    var chooseImageButtonPressed: AnyObserver<Void> { get }
+    
+    //Output
     var errorMessage: Driver<String> { get }
     var image: Driver<UIImage> { get }
-
 }
 
 final class AvatarViewModel: AvatarViewModeling {
-    private enum Strings {
+    fileprivate enum Strings {
         static let notAuthorizedErrorMessage = "I don't have permission to read your photos ;("
         static let imageNotFoundMessage = "I didn't find the proper image"
     }
-    let imageReceiver: ImageHaving
-
+    
+    fileprivate let _chooseImageButtonPressed = PublishSubject<Void>()
+    
+    let image: Driver<UIImage>
+    let errorMessage: Driver<String>
+    
     init(imageReceiver: ImageHaving) {
-        self.imageReceiver = imageReceiver
-    }
-
-    lazy var imageRetrievingAction: Action<Void, UIImage> = {
-        return Action(workFactory: { [weak self] in
-            guard let `self` = self else { return .empty() }
-            return self.imageReceiver.image
-        })
-    }()
-
-    var image: Driver<UIImage> {
-        return imageRetrievingAction.elements
+        let imageResult = _chooseImageButtonPressed.asObservable()
+            .flatMap { imageReceiver.image.materialize() }
+        
+        image = imageResult
+            .elements()
+            .asDriver(onErrorDriveWith: .never())
+        
+        errorMessage = imageResult
+            .errors()
+            .map(mapErrorMessages)
+            .unwrap()
             .asDriver(onErrorDriveWith: .never())
     }
+}
 
-    var errorMessage: Driver<String> {
-        return imageRetrievingAction.errors
-            .map { actionError -> String? in
-                guard case let .underlyingError(error) = actionError else { return nil }
-                switch error {
-                case GalleryReadingErrors.notAuthorized:
-                    return Strings.notAuthorizedErrorMessage
-                case GalleryReadingErrors.imageNotFound:
-                    return Strings.imageNotFoundMessage
-                default:
-                    return nil
-                }
-            }.unwrap()
-            .asDriver(onErrorDriveWith: .never())
+fileprivate func mapErrorMessages(error: Error) -> String? {
+    switch error {
+    case GalleryReadingErrors.notAuthorized:
+        return AvatarViewModel.Strings.notAuthorizedErrorMessage
+    case GalleryReadingErrors.imageNotFound:
+        return AvatarViewModel.Strings.imageNotFoundMessage
+    default:
+        return nil
+    }
+}
+
+extension AvatarViewModel {
+    var chooseImageButtonPressed: AnyObserver<Void> {
+        return _chooseImageButtonPressed.asObserver()
     }
 }

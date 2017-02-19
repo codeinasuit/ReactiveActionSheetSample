@@ -7,50 +7,104 @@ import Foundation
 import XCTest
 import RxSwift
 import RxTest
+import RxBlocking
+import RxCocoa
 import RxSwiftExt
+import NSObject_Rx
 import Action
 
 @testable import ReactiveAlertAndActionSheet
 
-final class ViewModelTests: XCTestCase {
+final class AvatarViewModelTests: XCTestCase {
     private var subject: AvatarViewModel!
-    var imageHavingMock: ImageHavingMock!
-    var disposeBag: DisposeBag!
+    var imageHavingMock: ImageHavingStub!
     var testScheduler: TestScheduler!
-
+    
     override func setUp() {
         super.setUp()
         testScheduler = TestScheduler(initialClock: 0)
-        disposeBag = DisposeBag()
-        imageHavingMock = ImageHavingMock()
+        rx_disposeBag = DisposeBag()
+        imageHavingMock = ImageHavingStub()
         subject = AvatarViewModel(imageReceiver: imageHavingMock)
     }
-
+    
     override func tearDown() {
         super.tearDown()
-        disposeBag = nil
+        testScheduler = nil
         subject = nil
     }
-
-    func test_actionReturnsImageFromImageReceiver() {
-        let expectedImage = UIImage()
-        imageHavingMock.expectedImage = expectedImage
-        var resultImage: UIImage?
-        subject.imageRetrievingAction.elements.subscribe(onNext: {
-            resultImage = $0
-        }).disposed(by: disposeBag)
-        _ = subject.imageRetrievingAction.execute()
-        XCTAssertTrue(resultImage === expectedImage)
+    
+    func simulateTaps(at times: Int...) {
+        let events: [Recorded<Event<Void>>] = times.map { next($0, ()) }
+        let taps = testScheduler.createHotObservable(events)
+        taps.bindTo(subject.chooseImageButtonPressed)
+            .disposed(by: rx_disposeBag)
+    }
+    
+    func test_receiveImage_onButtonClick() {
+        let buttonTap = PublishSubject<Void>()
+        buttonTap.bindTo(subject.chooseImageButtonPressed)
+            .disposed(by: rx_disposeBag)
+        
+        var resultImage: UIImage!
+        subject.image.drive(onNext: { image in
+            resultImage = image
+        }).disposed(by: rx_disposeBag)
+        
+        buttonTap.onNext(())
+        
+        XCTAssertEqual(resultImage, imageHavingMock.expectedImage)
+    }
+    
+    func test_receiveImage_onButtonClick_version2() {
+        imageHavingMock.expectedImage = UIImage()
+        simulateTaps(at: 100, 200)
+        
+        let observer = testScheduler.createObserver(UIImage.self)
+        self.subject.image.drive(observer)
+            .disposed(by: self.rx_disposeBag)
+        testScheduler.start()
+        
+        let expectedEvents = [
+            next(100, imageHavingMock.expectedImage),
+            next(200, imageHavingMock.expectedImage)
+        ]
+        XCTAssertEqual(observer.events, expectedEvents)
+    }
+    
+    func test_whenActionReturnsNotAuthorizedError_displayProperMessage() {
+        imageHavingMock.givenError = GalleryReadingErrors.notAuthorized
+        simulateTaps(at: 100)
+        let observer = testScheduler.createObserver(String.self)
+        
+        subject.errorMessage.drive(observer)
+            .disposed(by: rx_disposeBag)
+        testScheduler.start()
+        
+        XCTAssertEqual(observer.events, [next(100, "I don't have permission to read your photos ;(")])
+    }
+    
+    func test_whenThereAreAnyOfImageInsideGalery_displayProperMessage() {
+        simulateTaps(at: 100)
+        imageHavingMock.givenError = GalleryReadingErrors.imageNotFound
+        let observer = testScheduler.createObserver(String.self)
+        
+        subject.errorMessage.drive(observer)
+            .disposed(by: rx_disposeBag)
+        testScheduler.start()
+        
+        XCTAssertEqual(observer.events, [next(100, "I didn't find the proper image")])
     }
 }
 
-final class ImageHavingMock: ImageHaving {
-    var expectedImage: UIImage? = UIImage()
+final class ImageHavingStub: ImageHaving {
+    var expectedImage = UIImage()
+    var givenError: Error? = nil
 
     var image: Observable<UIImage> {
-        guard let image = expectedImage else {
-            return .empty()
+        if let error = givenError {
+            return .error(error)
         }
-        return .just(image)
+        return .just(expectedImage)
     }
 }

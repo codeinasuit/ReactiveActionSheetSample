@@ -8,6 +8,10 @@ import Foundation
 import RxSwift
 import Photos
 
+protocol ImageHaving {
+    var image: Observable<UIImage> { get }
+}
+
 protocol ImageSource: CustomStringConvertible {
     var image: Observable<UIImage> { get }
 }

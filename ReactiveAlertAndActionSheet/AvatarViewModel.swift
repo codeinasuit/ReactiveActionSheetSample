@@ -32,6 +32,7 @@ final class AvatarViewModel: AvatarViewModeling {
     init(imageReceiver: ImageHaving) {
         let imageResult = _chooseImageButtonPressed.asObservable()
             .flatMap { imageReceiver.image.materialize() }
+            .share()
         
         image = imageResult
             .elements()

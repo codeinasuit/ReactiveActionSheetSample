@@ -61,8 +61,8 @@ final class AvatarViewModelTests: XCTestCase {
         simulateTaps(at: 100, 200)
         
         let observer = testScheduler.createObserver(UIImage.self)
-        self.subject.image.drive(observer)
-            .disposed(by: self.rx_disposeBag)
+        subject.image.drive(observer)
+            .disposed(by: rx_disposeBag)
         testScheduler.start()
         
         let expectedEvents = [
@@ -95,13 +95,28 @@ final class AvatarViewModelTests: XCTestCase {
         
         XCTAssertEqual(observer.events, [next(100, "I didn't find the proper image")])
     }
+    
+    func test_asksOnlyOnceForImage_perButtonTap() {
+        simulateTaps(at: 100)
+        let imageObserver = testScheduler.createObserver(UIImage.self)
+        subject.image.drive(imageObserver)
+            .disposed(by: rx_disposeBag)
+        let errorMessageObserver = testScheduler.createObserver(String.self)
+        subject.errorMessage.drive(errorMessageObserver)
+            .disposed(by: rx_disposeBag)
+        
+        testScheduler.start()
+        XCTAssertEqual(imageHavingMock.invocationCount, 1)
+    }
 }
 
 final class ImageHavingStub: ImageHaving {
     var expectedImage = UIImage()
     var givenError: Error? = nil
+    var invocationCount = 0
 
     var image: Observable<UIImage> {
+        invocationCount += 1
         if let error = givenError {
             return .error(error)
         }
